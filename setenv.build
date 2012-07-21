@@ -1,0 +1,4 @@
+#!/bin/sh
+
+export BUILD_ARCH=`uname -s -p | tr ' ' '_'`
+export SRCTOP=${PWD}
