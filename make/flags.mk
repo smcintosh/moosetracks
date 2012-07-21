@@ -28,7 +28,7 @@ OPTIM_CFLAGS_gcc = -O3
 endif
 
 # Automatic dependency generation flags 
-ifeq ($(FTR_AUTODEPS),on)
+ifeq ($(AUTODEPS_ftr),on)
 AUTODEPS_CFLAGS_gcc = -MMD
 endif
 
