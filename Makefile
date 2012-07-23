@@ -12,10 +12,12 @@ OUTPUT_TOP = _$(BUILD_ARCH)
 
 include $(SRCTOP)/make/configs/$(BUILD_ARCH).mk
 
-ifeq ($(MAKELEVEL),0)
+MTRACKS_VERSION = 0.1
 
 .PHONY: default
 default: all
+
+ifeq ($(MAKELEVEL),0)
 
 %: | $(OUTPUT_TOP)
 	$(MAKE) -C $(OUTPUT_TOP) --no-print-directory \
