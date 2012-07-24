@@ -1,5 +1,5 @@
 #include "mtracks_version.h"
-#include "libutil.h"
+#include "mtracks_stdlib.h"
 #include <stdio.h>
 
 static char *Version_string = NULL;
