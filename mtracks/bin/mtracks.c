@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include "mtracks_cli.h"
 #include "mtracks_version.h"
+#include "mtracks_receipt.h"
 
 static void print_usage(const char *progname, const char *reason);
 
@@ -25,13 +26,13 @@ int main(int argc, char *argv[])
 
   switch (opt) {
   case mtracks_add_receipt:
-    printf("Add receipt\n");
+    rtn_code = add_receipt();
     break;
   case mtracks_add_vendor:
     printf("Add vendor\n");
     break;
   case mtracks_print_version:
-    print_usage(argv[0], get_version_string());
+    printf("%s\n", get_version_string());
     goto out;
   case mtracks_print_help:
     print_usage(argv[0], "Help!\n");

@@ -1,5 +1,6 @@
 mtracks_CFILES = \
 	mtracks/bin/mtracks.c \
+	mtracks/bin/mtracks_add_receipt.c \
 	mtracks/bin/mtracks_cli.c \
 	mtracks/bin/mtracks_version.c
 

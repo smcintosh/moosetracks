@@ -11,9 +11,8 @@ static char *Version_string = NULL;
 char *get_version_string(void)
 {
   if (!Version_string) {
-    Version_string = xcalloc(18, 1);
-    if (snprintf(Version_string, 18, "Moose tracks %s\n", MTRACKS_VERSION)
-        != 16) {
+    Version_string = xcalloc(16, 1);
+    if (snprintf(Version_string, 16, "Moosetracks %s", MTRACKS_VERSION) != 15) {
       fprintf(stderr,
               "ERROR: Failed to populate an array with the version number.\n");
       free(Version_string);

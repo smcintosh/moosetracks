@@ -3,6 +3,7 @@ INCLUDEDIRS_mtracks/lib += \
 
 libutil_SRCS = \
 	mtracks/lib/xmalloc.c \
+	mtracks/lib/xstrdup.c \
 	mtracks/lib/xcalloc.c
 
 libutil_OBJS = $(libutil_SRCS:.c=$O)
