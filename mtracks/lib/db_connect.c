@@ -56,24 +56,16 @@ sqlite3 *db_connect(const char *dbpath)
   }
 
   if ((sql_errno = sqlite3_open(the_dbpath, &dbconn)) != SQLITE_OK) {
-    char *message = mtracks_sqlite_strerror(sql_errno);
-
     fprintf(stderr,
             "Failed to open a connection to the database file '%s' (%s).\n",
-            the_dbpath,
-            message);
-
-    free(message);
+            the_dbpath, mtracks_sqlite_strerror(sql_errno));
 
     if (dbconn && (sql_errno = sqlite3_close(dbconn)) != SQLITE_OK) {
-      message = mtracks_sqlite_strerror(sql_errno);
       fprintf(stderr,
               "Failed to tidy up SQL connection resource (%s).\n",
-              message);
-      free(message);
+              mtracks_sqlite_strerror(sql_errno));
     }
 
-    message = NULL;
     dbconn = NULL;
   }
 

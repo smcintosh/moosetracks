@@ -12,10 +12,8 @@ int main(void)
   if (dbconn) {
     printf("DB connection successful\n");
     if ((sql_errno = sqlite3_close(dbconn)) != SQLITE_OK) {
-      char *message = mtracks_sqlite_strerror(sql_errno);
-      fprintf(stderr, "Failed to tidy up database connection (%s)\n", message);
-      free(message);
-      message = NULL;
+      fprintf(stderr, "Failed to tidy up database connection (%s)\n",
+              mtracks_sqlite_strerror(sql_errno));
       return 1;
     }
   }
