@@ -9,8 +9,8 @@ libutil_SRCS = \
 libutil_OBJS = $(libutil_SRCS:.c=$O)
 
 libtracksql_SRCS = \
-	mtracks/lib/add_receipt.c \
-	mtracks/lib/add_vendor.c \
+	mtracks/lib/db_add_receipt.c \
+	mtracks/lib/db_add_vendor.c \
 	mtracks/lib/db_connect.c \
 	mtracks/lib/mtracks_sqlite_strerror.c
 
