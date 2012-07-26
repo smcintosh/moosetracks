@@ -11,6 +11,7 @@ RM = /bin/rm
 TOUCH = /usr/bin/touch
 CC = /usr/bin/gcc
 LD = $(CC)
+AR = /usr/bin/libtool -static
 
 ################################################################################
 # File extentions
