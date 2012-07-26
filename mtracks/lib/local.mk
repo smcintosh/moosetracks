@@ -16,6 +16,8 @@ libtracksql_SRCS = \
 
 libtracksql_OBJS = $(libtracksql_SRCS:.c=$O)
 
+$(libtracksql_OBJS): INCLUDEDIRS += $(INC_SQLITE)
+
 mtracks/lib/libutil$A: $(libutil_OBJS)
 mtracks/lib/libtracksql$A: $(libtracksql_OBJS)
 
