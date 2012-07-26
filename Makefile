@@ -39,6 +39,7 @@ include $(SRCTOP)/make/rules.mk
 
 include $(SRCTOP)/local.mk
 include $(SRCTOP)/make/targets.mk
+include $(SRCTOP)/make/thirdparty.mk
 
 endif
 
