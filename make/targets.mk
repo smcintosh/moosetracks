@@ -1,2 +1,2 @@
 .PHONY: all
-all: mtracks
+all: mtracks sql_test
