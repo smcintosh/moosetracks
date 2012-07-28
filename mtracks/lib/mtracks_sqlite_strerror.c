@@ -31,11 +31,6 @@ static char *Sqlite_err_messages[] = {
   "File opened that is not a database file" /* SQLITE_NOTADB */
 };
 
-static char *Sqlite_err_messages_100s[] = {
-  "sqlite3_step() has another row ready", /* SQLITE_ROW */
-  "sqlite3_step() has finished executing" /* SQLITE_DONE */
-};
-
 static char *Def_err_message = "Unrecognized SQLite error";
 
 /**
@@ -49,8 +44,6 @@ char *mtracks_sqlite_strerror(int sql_errno)
 
   if (sql_errno < 100) {
     message = Sqlite_err_messages[sql_errno];
-  } else if (sql_errno >= 100 && sql_errno < 200) {
-    message = Sqlite_err_messages_100s[sql_errno - 100];
   } else {
       message = Def_err_message;
   }

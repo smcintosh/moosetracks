@@ -12,6 +12,7 @@ libtracksql_SRCS = \
 	mtracks/lib/db_add_receipt.c \
 	mtracks/lib/db_add_vendor.c \
 	mtracks/lib/db_connect.c \
+	mtracks/lib/db_utils.c \
 	mtracks/lib/mtracks_sqlite_strerror.c
 
 libtracksql_OBJS = $(libtracksql_SRCS:.c=$O)

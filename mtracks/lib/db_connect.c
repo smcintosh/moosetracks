@@ -1,10 +1,11 @@
 #include <stddef.h>
 #include <stdio.h>
 
-#include "mtracks_string.h"
 #include "mtracks_stdlib.h"
-
 #include "mtracks_sqlite.h"
+#include "mtracks_string.h"
+#include "receipt.h"
+#include "tracksql.h"
 
 #ifdef _WIN32
 #define HOMEDIR_ENV ("UserProfile")
@@ -17,6 +18,7 @@
 #define DEFAULT_DB_NAME (".mtracks.db")
 
 static char *get_default_db_path(void);
+static int build_tables(sqlite3 *);
 
 /**
  * @brief Get the default database path.
@@ -36,6 +38,40 @@ static char *get_default_db_path(void)
   }
 
   return (dbpath);
+}
+
+/**
+ * @brief Add the database tables if they don't exist.
+ * @return The SQLite error code.
+ */
+static int build_tables(sqlite3 *dbconn)
+{
+  int sql_errno = SQLITE_ERROR;
+  char stmt_str[MTRACKS_STATEMENT_MAX];
+
+  memset(stmt_str, '\0', sizeof (stmt_str));
+
+  /* TODO check snprintf() return code */
+  snprintf(stmt_str, sizeof (stmt_str),
+           "CREATE TABLE IF NOT EXISTS vendors(vendor char(%d), category char(%d), PRIMARY KEY(vendor));",
+           VENDORSIZ, CATEGORYSIZ);
+
+  if ((sql_errno = execute_one_step_statement(dbconn, stmt_str)) != SQLITE_OK) {
+    goto out;
+  }
+
+  memset(stmt_str, '\0', sizeof (stmt_str));
+
+  /* TODO check snprintf() return code */
+  snprintf(stmt_str, sizeof (stmt_str),
+           "CREATE TABLE IF NOT EXISTS receipts(date date, amount decimal(%d,%d), vendor char(%d), FOREIGN KEY(vendor) REFERENCES vendors(vendor) ON DELETE SET NULL ON UPDATE CASCADE, PRIMARY KEY(date, amount, vendor));", AMOUNTSIZ, AMOUNTDEC, VENDORSIZ);
+
+  if ((sql_errno = execute_one_step_statement(dbconn, stmt_str)) != SQLITE_OK) {
+    goto out;
+  }
+  
+out:
+  return (sql_errno);
 }
 
 /**
@@ -67,8 +103,22 @@ sqlite3 *db_connect(const char *dbpath)
     }
 
     dbconn = NULL;
+    goto out;
   }
 
+  if (build_tables(dbconn) != 0) {
+    fprintf(stderr, "Failed to create database tables.\n");
+    if ((sql_errno = sqlite3_close(dbconn)) != SQLITE_OK) {
+      fprintf(stderr,
+              "Failed to tidy up SQL connection resource (%s).\n",
+              mtracks_sqlite_strerror(sql_errno));
+    }
+
+    dbconn = NULL;
+    goto out;
+  }
+
+out:
   free(the_dbpath);
   the_dbpath = NULL;
 
