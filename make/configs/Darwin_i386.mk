@@ -11,10 +11,12 @@ RM = /bin/rm
 TOUCH = /usr/bin/touch
 CC = /usr/bin/gcc
 LD = $(CC)
-AR = /usr/bin/libtool -static
+AR = /usr/bin/libtool
+ARFLAGS = -static -o
+SFOUR =
 
 ################################################################################
-# File extentions
+# File extensions
 ################################################################################
 
 D = .dylib

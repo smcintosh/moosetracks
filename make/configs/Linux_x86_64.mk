@@ -1,20 +1,32 @@
-################################################################################
-# C compilation
-################################################################################
-%$O: %.c
-	@$(MKDIR) -p $(@D)
-	$(strip $(CC) -c $(CPPFLAGS) $(CFLAGS) -o $@ $<)
+#
+# Build configuration for Darwin
+#
 
 ################################################################################
-# Static libraries
+# Tools
 ################################################################################
-%$A:
-	@$(MKDIR) -p $(@D)
-	$(strip $(AR) $(ARFLAGS) $@ $(filter %$O,$^) $(filter %$A,$^))
+
+MKDIR = /bin/mkdir
+RM = /bin/rm
+TOUCH = /usr/bin/touch
+CC = /usr/bin/gcc
+LD = $(CC)
+AR = /usr/bin/ar
+ARFLAGS = rcs
+SFOUR = 64
 
 ################################################################################
-# Executables
+# File extentions
 ################################################################################
-%$E:
-	@$(MKDIR) -p $(@D)
-	$(strip $(LD) $(LDFLAGS) $^ $(LOADLIBES) $(LDLIBS) -o $@)
+
+D = .so #dylib
+
+################################################################################
+# Features
+################################################################################
+AUTODEPS_ftr = on
+DEBUG_ftr = on
+FTR_optimization = off
+
+# Common UNIX settings
+include $(SRCTOP)/make/configs/unix.mk
