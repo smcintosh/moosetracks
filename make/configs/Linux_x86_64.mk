@@ -13,7 +13,7 @@ CC = /usr/bin/gcc
 LD = $(CC)
 AR = /usr/bin/ar
 override ARFLAGS = rcs
-SFOUR = 64
+SQLITE_LIB_PATH = $(SQLITE_PATH)/lib64
 
 ################################################################################
 # File extensions
