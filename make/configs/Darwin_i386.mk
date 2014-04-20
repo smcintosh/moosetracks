@@ -11,10 +11,13 @@ RM = /bin/rm
 TOUCH = /usr/bin/touch
 CC = /usr/bin/gcc
 LD = $(CC)
-AR = /usr/bin/libtool -static
+AR = /usr/bin/libtool
+override ARFLAGS = -static
+AROUTPUT = -o
+SQLITE_LIB_PATH = $(SQLITE_PATH)/lib
 
 ################################################################################
-# File extentions
+# File extensions
 ################################################################################
 
 D = .dylib

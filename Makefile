@@ -21,7 +21,7 @@ ifeq ($(MAKELEVEL),0)
 
 %: | $(OUTPUT_TOP)
 	$(MAKE) -C $(OUTPUT_TOP) --no-print-directory \
-		-f $(SRCTOP)/makefile $(MAKECMDGOALS)
+		-f $(SRCTOP)/Makefile $(MAKECMDGOALS)
 
 _$(BUILD_ARCH):
 	$(MKDIR) -p _$(BUILD_ARCH)
