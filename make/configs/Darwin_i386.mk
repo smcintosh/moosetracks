@@ -12,7 +12,8 @@ TOUCH = /usr/bin/touch
 CC = /usr/bin/gcc
 LD = $(CC)
 AR = /usr/bin/libtool
-override ARFLAGS = -static -o
+override ARFLAGS = -static
+AROUTPUT = -o
 SQLITE_LIB_PATH = $(SQLITE_PATH)/lib
 
 ################################################################################
