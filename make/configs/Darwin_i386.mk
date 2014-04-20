@@ -12,8 +12,8 @@ TOUCH = /usr/bin/touch
 CC = /usr/bin/gcc
 LD = $(CC)
 AR = /usr/bin/libtool
-ARFLAGS = -static -o
-SFOUR =
+override ARFLAGS = -static -o
+SFOUR = 
 
 ################################################################################
 # File extensions

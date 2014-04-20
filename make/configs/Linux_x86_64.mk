@@ -12,7 +12,7 @@ TOUCH = /usr/bin/touch
 CC = /usr/bin/gcc
 LD = $(CC)
 AR = /usr/bin/ar
-ARFLAGS = rcs
+override ARFLAGS = rcs
 SFOUR = 64
 
 ################################################################################
