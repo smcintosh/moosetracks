@@ -33,7 +33,7 @@ AUTODEPS_CFLAGS_gcc = -MMD
 endif
 
 # Warnings
-WARN_CFLAGS_gcc = -Werror -Wall -Wextra
+#WARN_CFLAGS_gcc = -Werror -Wall -Wextra
 
 CFLAGS += \
 	$(WARN_CFLAGS_$(COMPILER_NAME)) \
