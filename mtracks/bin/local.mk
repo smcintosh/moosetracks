@@ -21,7 +21,7 @@ INCLUDEDIRS_mtracks/bin += \
 mtracks/bin/mtracks$E: $(mtracks_OBJS) mtracks/lib/libutil$A
 
 mtracks/bin/sql_test$E: $(sql_test_OBJS) $(sql_test_LIBS)
-mtracks/bin/sql_test$E: LDLIBS += $(LIB_SQLITE)
+mtracks/bin/sql_test$E: LDLIBS += -lsqlite3
 
 mtracks/bin/mtracks_version$O: \
 	CPPFLAGS += -DMTRACKS_VERSION='"$(MTRACKS_VERSION)"'
